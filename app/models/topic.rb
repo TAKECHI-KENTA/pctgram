@@ -4,4 +4,6 @@ class Topic < ApplicationRecord
   validates :image, presence: true
   
   belongs_to :user
+  
+  mount_uploader :image, ImageUploader  #写真投稿機能におけるcarrierwaveの設定で追加
 end
