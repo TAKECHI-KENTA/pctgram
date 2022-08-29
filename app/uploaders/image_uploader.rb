@@ -44,4 +44,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  def extension_allowlist  #アップロードを許可するファイル種類を指定する。
+    %w(jpg jpeg png)
+  end 
+  
+  def size_range
+    0..10.megabytes
 end
