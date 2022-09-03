@@ -17,4 +17,6 @@ class User < ApplicationRecord
                        }  #, message: "パスワードは半角8~32文字のアルファベット・数字それぞれ１文字以上含む必要があります" を入れたい
                        
   has_many :topics
+  has_many :favorites
+  has_many :favorite_topics, through: :favorites, source: 'topic'
 end
