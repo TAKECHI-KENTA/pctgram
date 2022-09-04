@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       log_in user
+      binding.pry
       redirect_to root_path, success: 'ログインに成功しました'
     else
       flash.now[:danger] = 'ログインに失敗しました'
@@ -14,11 +15,12 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    binding.pry
     log_out
     redirect_to root_url, info: 'ログアウトしました'
   end
   
-  protect_from_forgery #追記
+  #protect_from_forgery #追記
 
   private
   def log_in(user)
