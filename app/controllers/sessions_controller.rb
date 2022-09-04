@@ -3,10 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email])
-    if user && user.authenticate(params[:session][:password])
+    #user = User.find_by(email: params[:session][:email])
+    user = User.find_by(email: user_params[:email]) #ストロングパラメーターを一つに集約
+    #if user && user.authenticate(params[:session][:password])
+    if user && user.authenticate(user_params[:password])  #ストロングパラメーターを一つに集約
       log_in user
-      binding.pry
+      #binding.pry
       redirect_to root_path, success: 'ログインに成功しました'
     else
       flash.now[:danger] = 'ログインに失敗しました'
@@ -15,14 +17,16 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    binding.pry
+    #binding.pry
     log_out
     redirect_to root_url, info: 'ログアウトしました'
   end
   
-  #protect_from_forgery #追記
 
   private
+  def user_params  #ストロングパラメーターを一つに集約
+    params.require(:session).permit(:email, :password)
+  end 
   def log_in(user)
     session[:user_id] = user.id
   end
