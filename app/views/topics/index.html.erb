@@ -17,6 +17,9 @@
                 <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon-red' %>
               <% end %>
             <% end %>
+            <% if Favorite.exists?(topic_id: topic.id) %>
+              <p class="topic-text"><%= topic.favorite_users.count %></p>
+            <% end %>
             <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
             <p class="topic-text">
               <%= topic.description %>

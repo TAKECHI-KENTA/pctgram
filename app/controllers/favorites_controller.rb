@@ -13,6 +13,8 @@ class FavoritesController < ApplicationController
     else
       redirect_to topics_path, danger: 'お気に入りに登録に失敗しました'
     end
+    
+  
   end
   
   def destroy
