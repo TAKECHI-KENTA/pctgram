@@ -20,9 +20,14 @@
             <% if Favorite.exists?(topic_id: topic.id) %>
               <p class="topic-text"><%= topic.favorite_users.count %></p>
             <% end %>
-            <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            <%= link_to new_comment_path(topic_id: topic.id) do %>
+              <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            <% end %>
             <p class="topic-text">
               <%= topic.description %>
+              <% topic.comments.each do |c| %>
+                <%= c.description %>
+              <% end %>
             </p>
           </div>
         </div>
