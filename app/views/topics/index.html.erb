@@ -25,10 +25,10 @@
             <% end %>
             <p class="topic-text">
               <%= topic.description %>
-              <% topic.comments.each do |c| %>
-                <%= c.description %>
-              <% end %>
             </p>
+            <% topic.comments.each do |c| %>
+              <p class="topic-text"> <%= c.description %></p>
+            <% end %>
           </div>
         </div>
       </div>
